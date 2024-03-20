@@ -1,0 +1,42 @@
+— 
+-- Roll No: 34
+-- Name: Muhammed Shafeen v k
+-- Program: Assignment-I
+-- 
+
+
+--
+-- Table structure for table categories
+--
+
+create table categories(category_id int primary key,name varchar(50) not null,parent_category int);
+alter table categories add constraint ctg_fkey_pc foreign key(parent_category) references categories(category_id);
+
+--
+-- Table structure for table products
+--
+
+create table products(product_id int primary key,name varchar(50) unique not null,price decimal(6,2) default 100.00,category_id int,quantity int,constraint prd_fkey_ctg foreign key(category_id) references categories(category_id));
+
+alter table products add constraint prd_chk_prc check (price>0 and price<3000);
+
+
+-- Dumping data for table categories
+--
+
+insert into categories values(1,"Phones",NULL),(2,"Laptops",NULL),(3,"Consoles",NULL),(4,"Iphone",1),(5,"Windows",2),(6,"Xbox",3);
+
+-- Dumping data for table products
+--
+
+insert into products values(1,"iphone 12",999.99,4,10),(2,"MacBook Pro",1999.99,4,10),(3,"Dell XPS 15",1599.99,5,8),(4,"Sony PlayStation",499.99,5,8),(5,"Nintendo",149.99,3,12);
+
+insert into products(product_id,name,price,category_id)values(6,"Xbox Series X",499.99,6);
+
+
+--
+-- SQl Query Statements
+--
+
+-- 
+-- -----Question number should be commented---------------#This line may be removed in the actual file
